@@ -5,8 +5,12 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset, DataLoader
 
+from torch.utils.data import DataLoader, SequentialSampler
 
 
+from transformers import (
+    AutoTokenizer,
+)
 
 
 
@@ -20,7 +24,7 @@ class dataProcessor:
 
     def __init__(self):
         """Initialization."""
-        self.data_dir = '../datasets/final.csv'
+        self.data_dir = 'datasets/final.csv'
         self.df = pd.read_csv(self.data_dir)
 
         self.X = self.df['info_sentence']
@@ -93,4 +97,22 @@ if __name__ == "__main__":
 
     print(X_train)
     print(y_train)
+
+
+
+    tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+
+
+
+    examples = processor.get_dev_examples()
+    dataset = cardDataset(examples, tokenizer,
+                        max_seq_length=32)
+    sampler = SequentialSampler(dataset)
+    dataloader = DataLoader(dataset, sampler=sampler, batch_size=1)
+
+    for step, batch in enumerate(dataloader):
+        for each in batch:
+            assert each.size()[0] == 1, "Batch not loading correctly! Some error!"
+        break
+    print ("Dummy Dataset loading correctly.")
 
