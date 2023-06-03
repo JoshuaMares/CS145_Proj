@@ -1,0 +1,18 @@
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 200 entries, 6199 to 9933
+Data columns (total 2 columns):
+ #   Column         Non-Null Count  Dtype
+---  ------         --------------  -----
+ 0   info_sentence  200 non-null    object
+ 1   meta           200 non-null    int64
+dtypes: int64(1), object(1)
+memory usage: 4.7+ KB
+Some weights of the model checkpoint at microsoft/deberta-base were not used when initializing DebertaForSequenceClassification: ['lm_predictions.lm_head.dense.bias', 'lm_predictions.lm_head.dense.weight', 'lm_predictions.lm_head.LayerNorm.weight', 'lm_predictions.lm_head.bias', 'lm_predictions.lm_head.LayerNorm.bias']
+- This IS expected if you are initializing DebertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DebertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DebertaForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-base and are newly initialized: ['pooler.dense.bias', 'classifier.bias', 'pooler.dense.weight', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Traceback (most recent call last):
+  File "/Users/changyuyuan/Documents/GitHub/CS145_Proj/modeltest.py", line 75, in <module>
+    with wandb.monitor():
+AttributeError: module 'wandb' has no attribute 'monitor'

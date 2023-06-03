@@ -1,0 +1,34 @@
+{
+    "os": "macOS-13.1-arm64-arm-64bit",
+    "python": "3.9.13",
+    "heartbeatAt": "2023-06-03T05:56:01.308648",
+    "startedAt": "2023-06-03T05:56:00.777380",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/changyuyuan/Documents/GitHub/CS145_Proj/modeltest.py",
+    "codePath": "modeltest.py",
+    "git": {
+        "remote": "https://github.com/doublelariat180/CS145_Proj.git",
+        "commit": "867bdb3e9a1f3fe802425326e4069ad28205b60b"
+    },
+    "email": "lawani321@gmail.com",
+    "root": "/Users/changyuyuan/Documents/GitHub/CS145_Proj",
+    "host": "zhangyuyuandeMacBook-Pro.local",
+    "username": "changyuyuan",
+    "executable": "/Users/changyuyuan/miniforge3/bin/python3",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "disk": {
+        "total": 460.4317207336426,
+        "used": 243.2285385131836
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}

@@ -1,0 +1,184 @@
+2023-06-02 23:11:27,986 INFO    StreamThr :6189 [internal.py:wandb_internal():86] W&B internal server running at pid: 6189, started at: 2023-06-02 23:11:27.985951
+2023-06-02 23:11:27,987 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: status
+2023-06-02 23:11:27,992 INFO    WriterThread:6189 [datastore.py:open_for_write():85] open: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/run-d3ok21cp.wandb
+2023-06-02 23:11:27,993 DEBUG   SenderThread:6189 [sender.py:send():375] send: header
+2023-06-02 23:11:28,018 DEBUG   SenderThread:6189 [sender.py:send():375] send: run
+2023-06-02 23:11:28,328 INFO    SenderThread:6189 [dir_watcher.py:__init__():219] watching files in: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files
+2023-06-02 23:11:28,328 INFO    SenderThread:6189 [sender.py:_start_run_threads():1124] run started: d3ok21cp with start time 1685772687.984739
+2023-06-02 23:11:28,329 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: summary_record
+2023-06-02 23:11:28,329 INFO    SenderThread:6189 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-02 23:11:28,329 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: check_version
+2023-06-02 23:11:28,330 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: check_version
+2023-06-02 23:11:28,464 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: run_start
+2023-06-02 23:11:28,476 DEBUG   HandlerThread:6189 [system_info.py:__init__():31] System info init
+2023-06-02 23:11:28,477 DEBUG   HandlerThread:6189 [system_info.py:__init__():46] System info init done
+2023-06-02 23:11:28,477 INFO    HandlerThread:6189 [system_monitor.py:start():181] Starting system monitor
+2023-06-02 23:11:28,477 INFO    SystemMonitor:6189 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-06-02 23:11:28,477 INFO    HandlerThread:6189 [system_monitor.py:probe():201] Collecting system info
+2023-06-02 23:11:28,478 DEBUG   HandlerThread:6189 [system_info.py:probe():195] Probing system
+2023-06-02 23:11:28,478 INFO    SystemMonitor:6189 [interfaces.py:start():190] Started cpu monitoring
+2023-06-02 23:11:28,479 INFO    SystemMonitor:6189 [interfaces.py:start():190] Started disk monitoring
+2023-06-02 23:11:28,481 INFO    SystemMonitor:6189 [interfaces.py:start():190] Started gpuapple monitoring
+2023-06-02 23:11:28,483 INFO    SystemMonitor:6189 [interfaces.py:start():190] Started memory monitoring
+2023-06-02 23:11:28,484 INFO    SystemMonitor:6189 [interfaces.py:start():190] Started network monitoring
+2023-06-02 23:11:28,491 DEBUG   HandlerThread:6189 [system_info.py:_probe_git():180] Probing git
+2023-06-02 23:11:28,513 DEBUG   HandlerThread:6189 [system_info.py:_probe_git():188] Probing git done
+2023-06-02 23:11:28,514 DEBUG   HandlerThread:6189 [system_info.py:probe():240] Probing system done
+2023-06-02 23:11:28,514 DEBUG   HandlerThread:6189 [system_monitor.py:probe():210] {'os': 'macOS-13.1-arm64-arm-64bit', 'python': '3.9.13', 'heartbeatAt': '2023-06-03T06:11:28.478795', 'startedAt': '2023-06-03T06:11:27.958809', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/Users/changyuyuan/Documents/GitHub/CS145_Proj/modeltest.py', 'codePath': 'modeltest.py', 'git': {'remote': 'https://github.com/doublelariat180/CS145_Proj.git', 'commit': '867bdb3e9a1f3fe802425326e4069ad28205b60b'}, 'email': 'lawani321@gmail.com', 'root': '/Users/changyuyuan/Documents/GitHub/CS145_Proj', 'host': 'zhangyuyuandeMacBook-Pro.local', 'username': 'changyuyuan', 'executable': '/Users/changyuyuan/miniforge3/bin/python3', 'cpu_count': 8, 'cpu_count_logical': 8, 'disk': {'total': 460.4317207336426, 'used': 244.25031661987305}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2023-06-02 23:11:28,514 INFO    HandlerThread:6189 [system_monitor.py:probe():211] Finished collecting system info
+2023-06-02 23:11:28,514 INFO    HandlerThread:6189 [system_monitor.py:probe():214] Publishing system info
+2023-06-02 23:11:28,514 DEBUG   HandlerThread:6189 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-06-02 23:11:28,514 DEBUG   HandlerThread:6189 [system_info.py:_save_pip():67] Saving pip packages done
+2023-06-02 23:11:28,515 DEBUG   HandlerThread:6189 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-06-02 23:11:29,335 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/conda-environment.yaml
+2023-06-02 23:11:29,335 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/requirements.txt
+2023-06-02 23:11:29,335 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-summary.json
+2023-06-02 23:11:31,948 DEBUG   HandlerThread:6189 [system_info.py:_save_conda():86] Saving conda packages done
+2023-06-02 23:11:31,949 INFO    HandlerThread:6189 [system_monitor.py:probe():216] Finished publishing system info
+2023-06-02 23:11:31,954 DEBUG   SenderThread:6189 [sender.py:send():375] send: files
+2023-06-02 23:11:31,954 INFO    SenderThread:6189 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-06-02 23:11:31,957 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-02 23:11:31,957 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: stop_status
+2023-06-02 23:11:32,100 DEBUG   SenderThread:6189 [sender.py:send():375] send: telemetry
+2023-06-02 23:11:32,350 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/conda-environment.yaml
+2023-06-02 23:11:32,350 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/output.log
+2023-06-02 23:11:32,350 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-metadata.json
+2023-06-02 23:11:32,419 INFO    wandb-upload_0:6189 [upload_job.py:push():137] Uploaded file /var/folders/wj/2bdfjxmx6_dd5gvnsyg6_rvc0000gn/T/tmpn3ldsfeawandb/fql11byd-wandb-metadata.json
+2023-06-02 23:11:33,106 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: status_report
+2023-06-02 23:11:33,349 DEBUG   SenderThread:6189 [sender.py:send():375] send: exit
+2023-06-02 23:11:33,349 INFO    SenderThread:6189 [sender.py:send_exit():598] handling exit code: 1
+2023-06-02 23:11:33,349 INFO    SenderThread:6189 [sender.py:send_exit():600] handling runtime: 4
+2023-06-02 23:11:33,349 INFO    SenderThread:6189 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-02 23:11:33,350 INFO    SenderThread:6189 [sender.py:send_exit():606] send defer
+2023-06-02 23:11:33,350 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 0
+2023-06-02 23:11:33,350 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,350 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-06-02 23:11:33,350 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 1
+2023-06-02 23:11:33,350 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 1
+2023-06-02 23:11:33,350 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,350 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-06-02 23:11:33,350 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 2
+2023-06-02 23:11:33,350 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 2
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [system_monitor.py:finish():190] Stopping system monitor
+2023-06-02 23:11:33,350 DEBUG   SystemMonitor:6189 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [interfaces.py:finish():202] Joined cpu monitor
+2023-06-02 23:11:33,350 DEBUG   SystemMonitor:6189 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-06-02 23:11:33,350 INFO    HandlerThread:6189 [interfaces.py:finish():202] Joined disk monitor
+2023-06-02 23:11:33,351 DEBUG   SystemMonitor:6189 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-06-02 23:11:33,351 INFO    HandlerThread:6189 [interfaces.py:finish():202] Joined gpuapple monitor
+2023-06-02 23:11:33,351 INFO    HandlerThread:6189 [interfaces.py:finish():202] Joined memory monitor
+2023-06-02 23:11:33,351 INFO    HandlerThread:6189 [interfaces.py:finish():202] Joined network monitor
+2023-06-02 23:11:33,351 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,351 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-06-02 23:11:33,351 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 3
+2023-06-02 23:11:33,351 DEBUG   SenderThread:6189 [sender.py:send():375] send: telemetry
+2023-06-02 23:11:33,351 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,351 DEBUG   SenderThread:6189 [sender.py:send():375] send: stats
+2023-06-02 23:11:33,351 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 3
+2023-06-02 23:11:33,352 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 4
+2023-06-02 23:11:33,352 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,352 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 4
+2023-06-02 23:11:33,352 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 5
+2023-06-02 23:11:33,352 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,352 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 5
+2023-06-02 23:11:33,352 DEBUG   SenderThread:6189 [sender.py:send():375] send: summary
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-02 23:11:33,352 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 6
+2023-06-02 23:11:33,352 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,352 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 6
+2023-06-02 23:11:33,352 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,352 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-06-02 23:11:33,354 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: status_report
+2023-06-02 23:11:33,355 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-summary.json
+2023-06-02 23:11:33,495 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 7
+2023-06-02 23:11:33,495 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:33,496 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 7
+2023-06-02 23:11:33,496 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:33,496 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-06-02 23:11:34,356 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-02 23:11:34,360 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/config.yaml
+2023-06-02 23:11:34,361 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/output.log
+2023-06-02 23:11:35,342 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 8
+2023-06-02 23:11:35,343 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: poll_exit
+2023-06-02 23:11:35,343 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:35,343 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 8
+2023-06-02 23:11:35,343 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:35,344 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-06-02 23:11:35,350 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 9
+2023-06-02 23:11:35,351 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:35,351 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 9
+2023-06-02 23:11:35,351 DEBUG   SenderThread:6189 [sender.py:send():375] send: artifact
+2023-06-02 23:11:35,360 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-02 23:11:35,365 INFO    Thread-12 :6189 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/output.log
+2023-06-02 23:11:36,323 INFO    wandb-upload_1:6189 [upload_job.py:push():95] Uploaded file /Users/changyuyuan/Library/Application Support/wandb/artifacts/staging/tmpd0o_90d7
+2023-06-02 23:11:36,336 INFO    wandb-upload_0:6189 [upload_job.py:push():95] Uploaded file /Users/changyuyuan/Library/Application Support/wandb/artifacts/staging/tmp14r5hvxn
+2023-06-02 23:11:37,237 INFO    SenderThread:6189 [sender.py:send_artifact():1474] sent artifact job-https___github.com_doublelariat180_CS145_Proj.git_modeltest.py - {'id': 'QXJ0aWZhY3Q6NDc2MTE0NDg4', 'digest': '98072791f422f585d315b88cf661853e', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjczOTQyMTAx', 'latestArtifact': None}, 'version': 'latest'}
+2023-06-02 23:11:37,237 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:37,237 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-06-02 23:11:37,237 INFO    SenderThread:6189 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-06-02 23:11:37,372 INFO    SenderThread:6189 [dir_watcher.py:finish():395] scan: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files
+2023-06-02 23:11:37,372 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/requirements.txt requirements.txt
+2023-06-02 23:11:37,372 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/output.log output.log
+2023-06-02 23:11:37,376 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/config.yaml config.yaml
+2023-06-02 23:11:37,376 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-summary.json wandb-summary.json
+2023-06-02 23:11:37,382 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/conda-environment.yaml conda-environment.yaml
+2023-06-02 23:11:37,385 INFO    SenderThread:6189 [dir_watcher.py:finish():409] scan save: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-metadata.json wandb-metadata.json
+2023-06-02 23:11:37,385 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 10
+2023-06-02 23:11:37,385 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: poll_exit
+2023-06-02 23:11:37,386 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:37,386 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 10
+2023-06-02 23:11:37,389 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:37,389 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-06-02 23:11:37,389 INFO    SenderThread:6189 [file_pusher.py:finish():167] shutting down file pusher
+2023-06-02 23:11:37,802 INFO    wandb-upload_0:6189 [upload_job.py:push():137] Uploaded file /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/config.yaml
+2023-06-02 23:11:37,837 INFO    wandb-upload_1:6189 [upload_job.py:push():137] Uploaded file /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/requirements.txt
+2023-06-02 23:11:37,859 INFO    wandb-upload_2:6189 [upload_job.py:push():137] Uploaded file /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/output.log
+2023-06-02 23:11:37,895 INFO    wandb-upload_4:6189 [upload_job.py:push():137] Uploaded file /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/conda-environment.yaml
+2023-06-02 23:11:37,949 INFO    wandb-upload_3:6189 [upload_job.py:push():137] Uploaded file /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/files/wandb-summary.json
+2023-06-02 23:11:38,155 INFO    Thread-11 :6189 [sender.py:transition_state():626] send defer: 11
+2023-06-02 23:11:38,156 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:38,156 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 11
+2023-06-02 23:11:38,157 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:38,157 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-06-02 23:11:38,157 INFO    SenderThread:6189 [file_pusher.py:join():172] waiting for file pusher
+2023-06-02 23:11:38,157 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 12
+2023-06-02 23:11:38,158 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:38,158 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 12
+2023-06-02 23:11:38,158 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:38,158 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-06-02 23:11:38,266 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 13
+2023-06-02 23:11:38,266 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:38,266 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 13
+2023-06-02 23:11:38,267 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:38,267 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-06-02 23:11:38,267 INFO    SenderThread:6189 [sender.py:transition_state():626] send defer: 14
+2023-06-02 23:11:38,268 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: defer
+2023-06-02 23:11:38,268 DEBUG   SenderThread:6189 [sender.py:send():375] send: final
+2023-06-02 23:11:38,268 INFO    HandlerThread:6189 [handler.py:handle_request_defer():170] handle defer: 14
+2023-06-02 23:11:38,268 DEBUG   SenderThread:6189 [sender.py:send():375] send: footer
+2023-06-02 23:11:38,268 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: defer
+2023-06-02 23:11:38,269 INFO    SenderThread:6189 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-06-02 23:11:38,270 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-02 23:11:38,271 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: server_info
+2023-06-02 23:11:38,271 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: get_summary
+2023-06-02 23:11:38,271 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: poll_exit
+2023-06-02 23:11:38,272 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: sampled_history
+2023-06-02 23:11:38,272 DEBUG   SenderThread:6189 [sender.py:send_request():402] send_request: server_info
+2023-06-02 23:11:38,368 INFO    MainThread:6189 [wandb_run.py:_footer_history_summary_info():3469] rendering history
+2023-06-02 23:11:38,369 INFO    MainThread:6189 [wandb_run.py:_footer_history_summary_info():3501] rendering summary
+2023-06-02 23:11:38,369 INFO    MainThread:6189 [wandb_run.py:_footer_sync_info():3428] logging synced files
+2023-06-02 23:11:38,371 DEBUG   HandlerThread:6189 [handler.py:handle_request():144] handle_request: shutdown
+2023-06-02 23:11:38,371 INFO    HandlerThread:6189 [handler.py:finish():842] shutting down handler
+2023-06-02 23:11:39,277 INFO    WriterThread:6189 [datastore.py:close():298] close: /Users/changyuyuan/Documents/GitHub/CS145_Proj/wandb/run-20230602_231127-d3ok21cp/run-d3ok21cp.wandb
+2023-06-02 23:11:39,370 INFO    SenderThread:6189 [sender.py:finish():1550] shutting down sender
+2023-06-02 23:11:39,370 INFO    SenderThread:6189 [file_pusher.py:finish():167] shutting down file pusher
+2023-06-02 23:11:39,371 INFO    SenderThread:6189 [file_pusher.py:join():172] waiting for file pusher

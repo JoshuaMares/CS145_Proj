@@ -1,0 +1,49 @@
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 200 entries, 6199 to 9933
+Data columns (total 2 columns):
+ #   Column         Non-Null Count  Dtype
+---  ------         --------------  -----
+ 0   info_sentence  200 non-null    object
+ 1   meta           200 non-null    int64
+dtypes: int64(1), object(1)
+memory usage: 4.7+ KB
+Some weights of the model checkpoint at microsoft/deberta-base were not used when initializing DebertaForSequenceClassification: ['lm_predictions.lm_head.LayerNorm.bias', 'lm_predictions.lm_head.dense.bias', 'lm_predictions.lm_head.LayerNorm.weight', 'lm_predictions.lm_head.dense.weight', 'lm_predictions.lm_head.bias']
+- This IS expected if you are initializing DebertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DebertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DebertaForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-base and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.weight', 'pooler.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/Users/changyuyuan/miniforge3/lib/python3.9/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|                                                                                                  | 0/30 [00:00<?, ?it/s]/Users/changyuyuan/Documents/GitHub/CS145_Proj/modeltest.py:42: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|█████████████████████████████████████████████████████████████████████████████████████████| 30/30 [04:45<00:00,  9.52s/it]
+{'train_runtime': 285.7412, 'train_samples_per_second': 1.68, 'train_steps_per_second': 0.105, 'train_loss': 0.6968456268310547, 'epoch': 3.0}
