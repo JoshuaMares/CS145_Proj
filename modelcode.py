@@ -80,44 +80,7 @@ trainer.train()
 # save the model
 model.save_pretrained("./deberta_model")
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from transformers import DebertaTokenizer, DebertaForSequenceClassification, Trainer, TrainingArguments
-import torch
 
-# load data
-df = pd.read_csv('card_info_clean.csv')  # replace with your csv file
-df.info()
-texts = df['info_sentence'].tolist()
-labels = df['meta'].tolist()
-
-
-# Split into training and validation before converting to tensors
-train_texts, val_texts, train_labels, val_labels = train_test_split(texts, labels, test_size=0.2)
-
-# load tokenizer and model
-tokenizer = DebertaTokenizer.from_pretrained('microsoft/deberta-base')
-
-# tokenize data for training set
-train_encodings = tokenizer(train_texts, truncation=True, padding=True, max_length=512, return_tensors='pt')
-train_encodings['labels'] = torch.tensor(train_labels)
-
-# tokenize data for validation set
-val_encodings = tokenizer(val_texts, truncation=True, padding=True, max_length=512, return_tensors='pt')
-val_encodings['labels'] = torch.tensor(val_labels)
-
-# print keys of the encodings dictionary
-print(train_encodings.keys())
-
-# print the 'input_ids' tensor
-print(train_encodings['input_ids'])
-
-# print the 'attention_mask' tensor
-print(train_encodings['attention_mask'])
-
-# if the labels were included in the encodings, print the 'labels' tensor
-if 'labels' in train_encodings:
-    print(train_encodings['labels'])
 
 !pip install accelerate
 
