@@ -1,7 +1,7 @@
 # DATA_DIR="datasets/com2sense"
 #MODEL_TYPE="bert-base-cased"
 #MODEL_TYPE="roberta-base"
-MODEL_TYPE="microsoft/deberta-v3-base"
+MODEL_TYPE="microsoft/deberta-base"
 # TASK_NAME="com2sense"
 OUTPUT_DIR=kevin
 
@@ -17,6 +17,7 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --model_name_or_path ${MODEL_TYPE} \
   --do_train \
   --do_eval \
+  --evaluate_during_training \
   --eval_all_checkpoints \
   --gradient_accumulation_steps ${GRADIENT_ACCU_STEPS} \
   --per_gpu_train_batch_size ${TRAIN_BATCH_SIZE} \
@@ -31,7 +32,6 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --warmup_steps ${WARMUP_STEPS} \
   --eval_split "dev" \
   --score_average_method "binary" \
-#   --evaluate_during_training \
   # --do_not_load_optimizer \
   # --overwrite_output_dir \
 #   --data_dir "${DATA_DIR}" \
