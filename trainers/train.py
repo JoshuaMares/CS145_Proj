@@ -233,10 +233,9 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
 
     # Main evaluation loop.
     results = {}
-    eval_dataset = load_and_cache_examples(args, args.task_name,
+    eval_dataset = load_and_cache_examples(args, 
                                            tokenizer, evaluate=True,
-                                           data_split=data_split,
-                                           data_dir=args.data_dir)
+                                           data_split=data_split)
 
     args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly
