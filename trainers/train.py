@@ -49,7 +49,7 @@ def set_seed(args):
         torch.cuda.manual_seed_all(args.seed)
 
 
-def train(args, train_dataset, model, tokenizer):
+def train(args, train_dataset, model, tokenizer, y_labels):
 
     output_str = args.output_dir.split("/")[-1]
     comment_str = "_{}".format(output_str)
@@ -120,6 +120,20 @@ def train(args, train_dataset, model, tokenizer):
 
     set_seed(args)  # Added here for reproductibility.
 
+
+
+    class_0 = np.sum(y_labels == 0)
+    class_1 = np.sum(y_labels == 1)
+
+    total = len(y_labels)
+
+    weight_for_0 = (1 / class_0)*(total)/2.0 
+    weight_for_1 = (1 / class_1)*(total)/2.0
+
+    class_weights = torch.tensor([weight_for_0, weight_for_1]).to(args.device)
+
+    loss_fct = torch.nn.CrossEntropyLoss(weight=class_weights)
+
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration",
                               disable=args.local_rank not in [-1, 0])
@@ -137,7 +151,7 @@ def train(args, train_dataset, model, tokenizer):
 
             outputs = model(**inputs)
 
-            loss = outputs.loss
+            loss = loss_fct(outputs.logits.view(-1, outputs.logits.size(-1)), inputs["labels"].view(-1))
 
 
 
@@ -224,7 +238,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False,
         # dataset, and the others will use the cache
         torch.distributed.barrier() 
     
-    return dataset
+    return dataset, examples[1]
 
 
 
@@ -233,7 +247,7 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
 
     # Main evaluation loop.
     results = {}
-    eval_dataset = load_and_cache_examples(args, 
+    eval_dataset, _ = load_and_cache_examples(args, 
                                            tokenizer, evaluate=True,
                                            data_split=data_split)
 
@@ -413,9 +427,9 @@ def main():
 
     # Training.
     if args.do_train:
-        train_dataset = load_and_cache_examples(args, tokenizer, data_split="train",
+        train_dataset, y_labels = load_and_cache_examples(args, tokenizer, data_split="train",
                                                 evaluate=False)
-        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
+        global_step, tr_loss = train(args, train_dataset, model, tokenizer, y_labels)
         logger.info(" global_step = %s, average loss = %s",
                     global_step, tr_loss)
 

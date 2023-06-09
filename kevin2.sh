@@ -6,11 +6,11 @@ MODEL_TYPE="microsoft/deberta-base"
 OUTPUT_DIR=kevin
 
 GRADIENT_ACCU_STEPS=4
-TRAIN_BATCH_SIZE=16
-LEARNING_RATE=5e-5
-MAX_STEPS=2000
-MAX_SEQ_LENGTH=128
+TRAIN_BATCH_SIZE=48
+LEARNING_RATE=1e-5
 WARMUP_STEPS=500
+WEIGHT_DECAY=0.01
+NUM_TRAIN_EPOCHS=5
 
 
 CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
@@ -21,7 +21,8 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --eval_all_checkpoints \
   --gradient_accumulation_steps ${GRADIENT_ACCU_STEPS} \
   --per_gpu_train_batch_size ${TRAIN_BATCH_SIZE} \
-  --weight_decay 0.01 \
+  --weight_decay ${WEIGHT_DECAY} \
+  --num_train_epochs ${NUM_TRAIN_EPOCHS} \
   --per_gpu_eval_batch_size 1 \
   --learning_rate ${LEARNING_RATE} \
   --max_seq_length ${MAX_SEQ_LENGTH} \
