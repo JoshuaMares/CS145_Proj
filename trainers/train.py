@@ -130,6 +130,9 @@ def train(args, train_dataset, model, tokenizer, y_labels):
     weight_for_0 = (1 / class_0)*(total)/2.0 
     weight_for_1 = (1 / class_1)*(total)/2.0
 
+    weight_for_0 = weight_for_0.float()
+    weight_for_1 = weight_for_1.float()
+
     class_weights = torch.tensor([weight_for_0, weight_for_1]).to(args.device)
 
     loss_fct = torch.nn.CrossEntropyLoss(weight=class_weights)

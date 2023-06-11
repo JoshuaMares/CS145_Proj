@@ -25,7 +25,6 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --num_train_epochs ${NUM_TRAIN_EPOCHS} \
   --per_gpu_eval_batch_size 1 \
   --learning_rate ${LEARNING_RATE} \
-  --max_seq_length ${MAX_SEQ_LENGTH} \
   --output_dir "${OUTPUT_DIR}" \
   --task_name "${TASK_NAME}" \
   --save_steps 100 \
@@ -33,6 +32,7 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --warmup_steps ${WARMUP_STEPS} \
   --eval_split "dev" \
   --score_average_method "micro" \
+  # --max_seq_length ${MAX_SEQ_LENGTH} \
   # --do_not_load_optimizer \
   # --overwrite_output_dir \
 #   --data_dir "${DATA_DIR}" \
