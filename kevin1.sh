@@ -31,7 +31,7 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --logging_steps 50 \
   --warmup_steps ${WARMUP_STEPS} \
   --eval_split "dev" \
-  --score_average_method "micro" \
+  --score_average_method "binary" \
   # --max_seq_length ${MAX_SEQ_LENGTH} \
   # --do_not_load_optimizer \
   # --overwrite_output_dir \
