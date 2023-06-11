@@ -27,8 +27,8 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --learning_rate ${LEARNING_RATE} \
   --output_dir "${OUTPUT_DIR}" \
   --task_name "${TASK_NAME}" \
-  --save_steps 100 \
-  --logging_steps 100 \
+  --save_steps 50 \
+  --logging_steps 50 \
   --warmup_steps ${WARMUP_STEPS} \
   --eval_split "dev" \
   --score_average_method "micro" \
