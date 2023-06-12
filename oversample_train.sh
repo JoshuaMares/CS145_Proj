@@ -3,7 +3,7 @@
 #MODEL_TYPE="roberta-base"
 MODEL_TYPE="microsoft/deberta-base"
 # TASK_NAME="com2sense"
-OUTPUT_DIR=kevin3
+OUTPUT_DIR=oversample
 
 GRADIENT_ACCU_STEPS=4
 TRAIN_BATCH_SIZE=16
