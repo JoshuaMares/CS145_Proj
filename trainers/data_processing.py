@@ -12,6 +12,8 @@ from transformers import (
     AutoTokenizer,
 )
 
+from imblearn.oversampling import RandomOverSampler
+from imblearn.undersampling import RandomUnderSampler
 
 
 
@@ -22,7 +24,7 @@ class dataProcessor:
         args: argparse class, may be optional.
     """
 
-    def __init__(self):
+    def __init__(self, sampling_method = ""):
         """Initialization."""
         self.data_dir = 'datasets/final.csv'
         self.df = pd.read_csv(self.data_dir)
@@ -34,13 +36,21 @@ class dataProcessor:
 
         self.X_train, X_temp, self.y_train, y_temp = train_test_split(self.X, self.y, test_size=0.2, random_state=42, stratify=self.y)
 
+        if sampling_method == "over":
+            #oversampling
+            ROS = RandomOverSampler(sampling_strategy = 1, random_state = 42)
+            self.X_train, self.y_train = ROS.fit_resample(self.X_train, self.y_train)
+        elif sampling_method == "under":
+            RUS = RandomUnderSampler(sampling_strategy = 1, random_state = 42)
+            self.X_train, self.y_train = RUS.fit_resample(self.X_train, self.y_train)
+
         self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42, stratify=y_temp)
 
     def get_labels(self):
         """See base class."""
         return 2  # Binary.
 
-   
+
 
     def get_train_examples(self):
         return self.X_train, self.y_train
@@ -84,7 +94,7 @@ class cardDataset(Dataset):
         label = torch.Tensor([label]).long()[0]
 
         return input_ids, attention_mask, token_type_ids, label
-    
+
 
 
 
@@ -115,4 +125,3 @@ if __name__ == "__main__":
             assert each.size()[0] == 1, "Batch not loading correctly! Some error!"
         break
     print ("Dummy Dataset loading correctly.")
-

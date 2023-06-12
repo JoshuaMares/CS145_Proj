@@ -127,7 +127,7 @@ def get_args():
         help="Rul evaluation during training at each logging step."
     )
     parser.add_argument(
-        "--do_lower_case", action="store_true", 
+        "--do_lower_case", action="store_true",
         help="Set this flag if you are using an uncased model."
     )
 
@@ -199,8 +199,22 @@ def get_args():
     parser.add_argument("--server_port", type=str, default="",
                         help="For distant debugging.")
     parser.add_argument(
-        "--no_gene", action="store_true", 
+        "--no_gene", action="store_true",
         help="Set this flag if not using the gene and variation information."
+    )
+    parser.add_argument(
+        "--sampling_method",
+        default="",
+        type=str,
+        choices=["", "over", "under"],
+        help=("over to oversample or under to undersample"),
+    )
+    parser.add_argument(
+        "--class_weights",
+        default="default",
+        type=str,
+        choices=["default", "balanced", "under"],
+        help=("default for (1,1), balanced for proportional weights, under for class_0 weights = 10"),
     )
     args = parser.parse_args()
 

@@ -56,7 +56,7 @@ def train(args, train_dataset, model, tokenizer, y_labels):
     tb_writer = SummaryWriter(comment=comment_str)
 
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
-    train_sampler = RandomSampler(train_dataset) 
+    train_sampler = RandomSampler(train_dataset)
     train_dataloader = DataLoader(train_dataset, sampler=train_sampler,
                                   batch_size=args.train_batch_size)
 
@@ -126,9 +126,15 @@ def train(args, train_dataset, model, tokenizer, y_labels):
     class_1 = np.sum(y_labels == 1)
 
     total = len(y_labels)
-
-    weight_for_0 = (1 / class_0)*(total)/2.0 
-    weight_for_1 = (1 / class_1)*(total)/2.0
+    if args.class_weights == "default":
+        weight_for_0 = 1
+        weight_for_1 = 1
+    elif args.class_weights == "balanced":
+        weight_for_0 = (1 / class_0)*(total)/2.0
+        weight_for_1 = (1 / class_1)*(total)/2.0
+    elif args.class_weights == "under":
+        weight_for_0 = 10
+        weight_for_1 = 1
 
     weight_for_0 = torch.tensor(weight_for_0, dtype=torch.float)
     weight_for_1 = torch.tensor(weight_for_1, dtype=torch.float)
@@ -214,7 +220,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False,
         # dataset, and the others will use the cache
         torch.distributed.barrier()
 
-    processor = dataProcessor()
+    processor = dataProcessor(args.sampling_method)
 
     # Getting the examples.
     if data_split == "test" and evaluate:
@@ -227,7 +233,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False,
         examples = processor.get_test_examples()
     else:
         examples = processor.get_test_examples() if evaluate else processor.get_train_examples()
-        
+
 
     logging.info("Number of {} examples in task: {}".format(
         data_split, len(examples[0])))
@@ -239,8 +245,8 @@ def load_and_cache_examples(args, tokenizer, evaluate=False,
     if args.local_rank == 0 and not evaluate:
         # Make sure only the first process in distributed training process the
         # dataset, and the others will use the cache
-        torch.distributed.barrier() 
-    
+        torch.distributed.barrier()
+
     return dataset, examples[1]
 
 
@@ -250,7 +256,7 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
 
     # Main evaluation loop.
     results = {}
-    eval_dataset, _ = load_and_cache_examples(args, 
+    eval_dataset, _ = load_and_cache_examples(args,
                                            tokenizer, evaluate=True,
                                            data_split=data_split)
 
@@ -284,7 +290,7 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
 
             inputs["labels"] = batch[3]
 
-            inputs["token_type_ids"] = batch[2] 
+            inputs["token_type_ids"] = batch[2]
 
             outputs = model(**inputs)
 
@@ -352,7 +358,7 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
 
 def main():
     torch.autograd.set_detect_anomaly(True)
-    
+
     args = get_args()
 
     # Writes the prefix to the output dir path.
@@ -375,7 +381,7 @@ def main():
 
 
 
-    
+
     device = torch.device("cuda" if torch.cuda.is_available()
                             and not args.no_cuda else "cpu")
     args.n_gpu = 0 if args.no_cuda else torch.cuda.device_count()
@@ -415,7 +421,7 @@ def main():
 
     tokenizer = AutoTokenizer.from_pretrained(model_checkpoint, use_fast=False, config=config)
 
-    
+
     model = AutoModelForSequenceClassification.from_pretrained(model_checkpoint, config=config)
 
     # Loads models onto the device (gpu or cpu).
