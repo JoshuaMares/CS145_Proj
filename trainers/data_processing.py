@@ -39,10 +39,10 @@ class dataProcessor:
         if sampling_method == "over":
             #oversampling
             ROS = RandomOverSampler(sampling_strategy = 1, random_state = 42)
-            self.X_train, self.y_train = ROS.fit_resample(self.X_train, self.y_train)
+            self.X_train, self.y_train = ROS.fit_resample(self.X_train.reshape(-1,1), self.y_train.reshape(-1,1))
         elif sampling_method == "under":
             RUS = RandomUnderSampler(sampling_strategy = 1, random_state = 42)
-            self.X_train, self.y_train = RUS.fit_resample(self.X_train, self.y_train)
+            self.X_train, self.y_train = RUS.fit_resample(self.X_train.reshape(-1,1), self.y_train.reshape(-1,1))
 
         self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42, stratify=y_temp)
 
