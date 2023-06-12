@@ -12,8 +12,8 @@ from transformers import (
     AutoTokenizer,
 )
 
-from imblearn.oversampling import RandomOverSampler
-from imblearn.undersampling import RandomUnderSampler
+from imblearn.over_sampling import RandomOverSampler
+from imblearn.under_sampling import RandomUnderSampler
 
 
 
