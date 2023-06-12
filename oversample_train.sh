@@ -32,4 +32,4 @@ CUDA_VISIBLE_DEVICES=0 python3 -m trainers.train \
   --warmup_steps ${WARMUP_STEPS} \
   --eval_split "dev" \
   --score_average_method "binary" \
-  --sampling_method "under" \
+  --sampling_method "over" \
