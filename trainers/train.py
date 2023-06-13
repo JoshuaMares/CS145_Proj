@@ -363,11 +363,9 @@ def main():
         level=logging.INFO,
     )
     logger.warning(
-        "device: %s, n_gpu: %s"
-
+        "device: %s, n_gpu: %s",
         device,
         args.n_gpu,
-
     )
 
 
