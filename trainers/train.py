@@ -1,28 +1,21 @@
-import argparse
 
 import os
 
 import logging
 
-import random
 
 import numpy as np
 import torch
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
-from torch.utils.data.distributed import DistributedSampler
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm, trange
 
 from transformers import (
     WEIGHTS_NAME,
     AdamW,
     AutoConfig,
-    AutoModel,
-    AutoModelForPreTraining,
     AutoModelForSequenceClassification,
-    AutoModelForMaskedLM,
     AutoTokenizer,
     get_linear_schedule_with_warmup,
-    BertConfig, EncoderDecoderConfig, EncoderDecoderModel, BertForMaskedLM,
 )
 
 from .args import get_args
@@ -41,12 +34,6 @@ from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_sc
 logger = logging.getLogger(__name__)
 
 
-def set_seed(args):
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    if args.n_gpu > 0:
-        torch.cuda.manual_seed_all(args.seed)
 
 
 def train(args, train_dataset, model, tokenizer, y_labels):
@@ -114,11 +101,8 @@ def train(args, train_dataset, model, tokenizer, y_labels):
     model.zero_grad()
 
     train_iterator = trange(
-        epochs_trained, int(args.num_train_epochs), desc="Epoch",
-        disable=args.local_rank not in [-1, 0]
-    )
+        epochs_trained, int(args.num_train_epochs), desc="Epoch")
 
-    set_seed(args)  # Added here for reproductibility.
 
 
 
@@ -138,8 +122,7 @@ def train(args, train_dataset, model, tokenizer, y_labels):
     loss_fct = torch.nn.CrossEntropyLoss(weight=class_weights)
 
     for _ in train_iterator:
-        epoch_iterator = tqdm(train_dataloader, desc="Iteration",
-                              disable=args.local_rank not in [-1, 0])
+        epoch_iterator = tqdm(train_dataloader, desc="Iteration")
         for step, batch in enumerate(epoch_iterator):
 
             model.train()
@@ -199,8 +182,7 @@ def train(args, train_dataset, model, tokenizer, y_labels):
             train_iterator.close()
             break
 
-    if args.local_rank in [-1, 0]:
-        tb_writer.close()
+    tb_writer.close()
 
     return global_step, tr_loss / global_step
 
@@ -209,10 +191,6 @@ def train(args, train_dataset, model, tokenizer, y_labels):
 
 def load_and_cache_examples(args, tokenizer, evaluate=False,
                             data_split="test"):
-    if args.local_rank not in [-1, 0] and not evaluate:
-        # Make sure only the first process in distributed training process the
-        # dataset, and the others will use the cache
-        torch.distributed.barrier()
 
     processor = dataProcessor()
 
@@ -236,10 +214,6 @@ def load_and_cache_examples(args, tokenizer, evaluate=False,
     dataset = cardDataset(examples, tokenizer,
                                  max_seq_length=args.max_seq_length)
 
-    if args.local_rank == 0 and not evaluate:
-        # Make sure only the first process in distributed training process the
-        # dataset, and the others will use the cache
-        torch.distributed.barrier() 
     
     return dataset, examples[1]
 
@@ -329,10 +303,10 @@ def evaluate(args, model, tokenizer, prefix="", data_split="test"):
     eval_recall = recall_score(labels, preds, average = args.score_average_method)
     eval_f1 = f1_score(labels, preds, average = args.score_average_method)
 
-    eval_acc_dict = {"{}_accuracy".format(args.task_name): eval_acc}
-    eval_acc_dict["{}_precision".format(args.task_name)] = eval_prec
-    eval_acc_dict["{}_recall".format(args.task_name)] = eval_recall
-    eval_acc_dict["{}_F1_score".format(args.task_name)] = eval_f1
+    eval_acc_dict = {"{}_accuracy": eval_acc}
+    eval_acc_dict["{}_precision"] = eval_prec
+    eval_acc_dict["{}_recall"] = eval_recall
+    eval_acc_dict["{}_F1_score"] = eval_f1
 
     results.update(eval_acc_dict)
 
@@ -386,19 +360,15 @@ def main():
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
         datefmt="%m/%d/%Y %H:%M:%S",
-        level=logging.INFO if args.local_rank in [-1, 0] else logging.WARN,
+        level=logging.INFO,
     )
     logger.warning(
-        "Process rank: %s, device: %s, n_gpu: %s, distributed "
-        "training: %s",
-        args.local_rank,
+        "device: %s, n_gpu: %s"
+
         device,
         args.n_gpu,
-        bool(args.local_rank != -1),
-    )
 
-    # Sets seed.
-    set_seed(args)
+    )
 
 
 
@@ -435,52 +405,6 @@ def main():
         global_step, tr_loss = train(args, train_dataset, model, tokenizer, y_labels)
         logger.info(" global_step = %s, average loss = %s",
                     global_step, tr_loss)
-
-    # Evaluation.
-    # results = {}
-    # if args.do_eval and args.local_rank in [-1, 0]:
-    #     checkpoints = [args.output_dir]
-    #     if args.eval_all_checkpoints:
-    #         checkpoints = list(
-    #             os.path.dirname(c) for c in sorted(glob.glob(
-    #                 args.output_dir + "/**/" + WEIGHTS_NAME, recursive=True))
-    #         )
-    #     else:
-    #         assert args.iters_to_eval is not None, ("At least one"
-    #             " of `iter_to_eval` or `eval_all_checkpoints` should be set.")
-    #         checkpoints = []
-    #         for iter_to_eval in args.iters_to_eval:
-    #             checkpoints_curr = list(
-    #                 os.path.dirname(c) for c in sorted(glob.glob(
-    #                     args.output_dir + "/*-{}/".format(iter_to_eval)
-    #                     + WEIGHTS_NAME, recursive=True))
-    #             )
-    #             checkpoints += checkpoints_curr
-
-    #     logger.info("\n\nEvaluate the following checkpoints: %s", checkpoints)
-    #     for checkpoint in checkpoints:
-    #         logger.info("\n\nEvaluate checkpoint: %s", checkpoint)
-    #         global_step = checkpoint.split("-")[-1] if len(checkpoints) > 1 else ""
-    #         prefix = checkpoint.split("/")[-1] if checkpoint.find("checkpoint") != -1 else ""
-    #         ckpt_path = os.path.join(checkpoint, "pytorch_model.bin")
-    #         model.load_state_dict(torch.load(ckpt_path))
-    #         model.to(args.device)
-
-    #         ##################################################
-    #         # TODO: Make sure the eval_split is "test" if in
-    #         # testing phase.
-    #         pass  # This TODO does not require any actual
-    #               # implementations, just a reminder.
-    #         # End of TODO.
-    #         ##################################################
-
-    #         result = evaluate(args, model, tokenizer, prefix=prefix, data_split=args.eval_split)
-    #         result = dict((k + "_{}".format(global_step), v)
-    #                        for k, v in result.items())
-    #         results.update(result)
-
-    # return results
-
 
 if __name__ == "__main__":
     main()

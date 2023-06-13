@@ -16,14 +16,9 @@ from transformers import (
 
 
 class dataProcessor:
-    """Processor for Dummy Dataset.
-    Args:
-        data_dir: string. Root directory for the dataset.
-        args: argparse class, may be optional.
-    """
+
 
     def __init__(self):
-        """Initialization."""
         self.data_dir = 'datasets/final.csv'
         self.df = pd.read_csv(self.data_dir)
 
@@ -37,7 +32,6 @@ class dataProcessor:
         self.X_dev, self.X_test, self.y_dev, self.y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42, stratify=y_temp)
 
     def get_labels(self):
-        """See base class."""
         return 2  # Binary.
 
    
